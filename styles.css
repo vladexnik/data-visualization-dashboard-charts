@@ -1,0 +1,40 @@
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(255, 253, 201);
+}
+
+.container{
+    text-align: center;
+}
+
+#canvas, #canvasLineChart{
+    overflow-x: scroll;
+    overflow-y: scroll;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    margin: 50px 0;
+    padding-top: 20px;
+    color: black;   
+    background-color: rgb(255, 255, 255);
+}
+#canvasLineChart{
+    border-radius: 20px;
+    border: 2px solid black;
+    
+}
+#canvasPieChart{
+    margin-top: 20px;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
