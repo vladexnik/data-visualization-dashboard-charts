@@ -10,25 +10,61 @@
 
 <body>
     <div class="container">
-        <div>
-            <h1>Posts per User</h1>
+        <section class="chart">
+            <h1 class="chart__title">Posts per User</h1>
+            <form class="chart__form" id="bar-chart-form">
+                <div class="chart__field">
+                    <label class="chart__label">Input user name: </label>
+                    <input class="chart__input" id="bar-chart-name" type="text">
+                </div>
+                <div class="chart__field">
+                    <label class="chart__label">Input post content: </label>
+                    <input class="chart__input" id="bar-chart-content" type="text">
+                </div>
+                <button type="submit" class="chart__button">Update chart</button>
+                <button type="reset" class="chart__button">Reset chart</button>
+            </form>
             <canvas id="canvas">
             </canvas>
-        </div>
+        </section>
 
-        <div>
+        <section>
             <h1>Comments per Month</h1>
+            <form class="chart__form" id="bar-chart-form">
+                <div class="chart__field">
+                    <label class="chart__label">Input user name: </label>
+                    <input class="chart__input" id="bar-chart-name" type="text">
+                </div>
+                <div class="chart__field">
+                    <label class="chart__label">Input post content: </label>
+                    <input class="chart__input" id="bar-chart-content" type="text">
+                </div>
+                <button type="submit" class="chart__button">Update chart</button>
+                <button type="reset" class="chart__button">Reset chart</button>
+            </form>
             <canvas id="canvasLineChart">
 
             </canvas>
-        </div>
+        </section>
 
-        <div>
-            <h1>Percentage distribution of posts among users</h1>
-            <canvas id="canvasPieChart">
+        <section>
+            <h1>Percentage of posts among users</h1>
+            <form class="chart__form" id="pie-chart-form">
+                <div class="chart__field">
+                    <label class="chart__label">Input user name: </label>
+                    <input type="text" class="chart__input" id="pie-chart-name">
+                </div>
+                <div class="chart__field">
+                    <label class="chart__label" id="pie-chart-post">Input post content: </label>
+                    <input type="text" class="chart__input" id="pie-chart-content">
+                </div>
+                <button type="submit" class="chart__button" id="upd-pie-chart-btn">Update chart</button>
+                <button type="reset" class="chart__button" id="res-pie-chart-btn">Reset chart</button>
+            </form>
+            <canvas id="canvasPieChart" class="canvas">
 
             </canvas>
-        </div>
+        </section>
     </div>
     <script type="module" src="./script.js"></script>
 

@@ -1,10 +1,5 @@
 import { fetchNewData } from '../constants/service.js';
-import {
-  PAD,
-  DPI_HEIGHT,
-  DPI_WIDTH,
-  ROWS_COUNT,
-} from '../constants/constants.js';
+import { PAD, DPI_HEIGHT, DPI_WIDTH, ROWS_COUNT } from '../constants/constants.js';
 import { BASE_URL } from '../constants/constants.js';
 
 export async function loadComments() {
@@ -26,9 +21,7 @@ function createLineChart(comments) {
       name: commentObj.name,
       email: commentObj.email,
       body: commentObj.body,
-      date: new Date(2023, Math.floor(Math.random() * 12) + 1)
-        .toISOString()
-        .slice(0, 7),
+      date: new Date(2023, Math.floor(Math.random() * 12) + 1).toISOString().slice(0, 7),
     });
   });
   comments = commentsWithDate;
@@ -49,10 +42,7 @@ function createLineChart(comments) {
   };
 
   comments.forEach((commentObj) => {
-    if (
-      Object.keys(commentPerMonth).includes(commentObj.date.slice(5, 7)) &&
-      commentObj.date.slice(5, 6) !== '0'
-    ) {
+    if (Object.keys(commentPerMonth).includes(commentObj.date.slice(5, 7)) && commentObj.date.slice(5, 6) !== '0') {
       commentPerMonth[commentObj.date.slice(5, 7)] += 1;
     } else {
       commentPerMonth[commentObj.date.slice(6, 7)] += 1;
@@ -79,30 +69,13 @@ function createLineChart(comments) {
   ctx.fillText('Comments', 0, 15);
   ctx.fillText('Month', DPI_WIDTH - 60, DPI_HEIGHT - 50);
 
-  const monthsLineChart = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
+  const monthsLineChart = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const monthLength = (DPI_WIDTH - PAD - PAD) / 12;
 
   for (let i = 0; i < monthsLineChart.length; i++) {
     ctx.font = '14px Arial';
     ctx.fillStyle = 'black';
-    ctx.fillText(
-      `${monthsLineChart[i]}`,
-      PAD - 15 + monthLength * i,
-      DPI_HEIGHT - 50,
-    );
+    ctx.fillText(`${monthsLineChart[i]}`, PAD - 15 + monthLength * i, DPI_HEIGHT - 50);
 
     // monthes-axis
     ctx.beginPath();
@@ -137,14 +110,8 @@ function createLineChart(comments) {
   ctx.lineWidth = 2;
   ctx.strokeStyle = 'red';
   for (let i = 0; i < 12; i++) {
-    ctx.moveTo(
-      PAD + i * monthLength,
-      DPI_HEIGHT - PAD - koef * commentPerMonth[i + 1],
-    );
-    ctx.lineTo(
-      PAD + monthLength * (i + 1),
-      DPI_HEIGHT - PAD - koef * commentPerMonth[i + 2],
-    );
+    ctx.moveTo(PAD + i * monthLength, DPI_HEIGHT - PAD - koef * commentPerMonth[i + 1]);
+    ctx.lineTo(PAD + monthLength * (i + 1), DPI_HEIGHT - PAD - koef * commentPerMonth[i + 2]);
   }
   ctx.stroke();
   ctx.closePath();

@@ -1,19 +1,14 @@
 import { dbposts } from './constants/db.js';
+// import { dbusers } from './constants/dbusers.js';
 import { fetchNewData } from './constants/service.js';
-import {
-  WIDTH,
-  HEIGHT,
-  DPI_HEIGHT,
-  DPI_WIDTH,
-  ROWS_COUNT,
-} from './constants/constants.js';
-
+import { WIDTH, HEIGHT, DPI_HEIGHT, DPI_WIDTH, ROWS_COUNT } from './constants/constants.js';
 import { BASE_URL } from './constants/constants.js';
 import { loadComments } from './modules/createLineChart.js';
 import { loadPieData } from './modules/pieChart.js';
 
 async function loadData() {
   const users = await fetchNewData(`${BASE_URL}/users`);
+  // const users = dbusers;
   const posts = dbposts;
   const postsPerUserId = {};
 
@@ -70,14 +65,11 @@ function createBarChart(postsPerUser) {
 
   for (const userId in postsPerUser) {
     const barHeight = postsPerUser[userId] * koef;
-    // const r = Math.floor(Math.random() * 255);
-    // const g = Math.floor(Math.random() * 255);
-    // const b = Math.floor(Math.random() * 255);
 
     ctx.fillStyle = `black`;
     ctx.font = '14px Arial';
     ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-    ctx.fillText(postsPerUser[userId], x + 4, canvas.height - barHeight - 10); // Adjust for label position
+    ctx.fillText(postsPerUser[userId], x + 4, canvas.height - barHeight - 10); // adjust for label position
 
     // X-axis title
     ctx.save();

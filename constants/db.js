@@ -80,8 +80,7 @@ export const dbposts = [
   {
     userId: 2,
     id: 16,
-    title:
-      'sint suscipit perspiciatis velit dolorum rerum ipsa laboriosam odio',
+    title: 'sint suscipit perspiciatis velit dolorum rerum ipsa laboriosam odio',
     body: 'suscipit nam nisi quo aperiam aut\nasperiores eos fugit maiores voluptatibus quia\nvoluptatem quis ullam qui in alias quia est\nconsequatur magni mollitia accusamus ea nisi voluptate dicta',
   },
   {
@@ -220,15 +219,13 @@ export const dbposts = [
   {
     userId: 5,
     id: 42,
-    title:
-      'commodi ullam sint et excepturi error explicabo praesentium voluptas',
+    title: 'commodi ullam sint et excepturi error explicabo praesentium voluptas',
     body: 'odio fugit voluptatum ducimus earum autem est incidunt voluptatem\nodit reiciendis aliquam sunt sequi nulla dolorem\nnon facere repellendus voluptates quia\nratione harum vitae ut',
   },
   {
     userId: 5,
     id: 43,
-    title:
-      'eligendi iste nostrum consequuntur adipisci praesentium sit beatae perferendis',
+    title: 'eligendi iste nostrum consequuntur adipisci praesentium sit beatae perferendis',
     body: 'similique fugit est\nillum et dolorum harum et voluptate eaque quidem\nexercitationem quos nam commodi possimus cum odio nihil nulla\ndolorum exercitationem magnam ex et a et distinctio debitis',
   },
   {
@@ -259,8 +256,7 @@ export const dbposts = [
   {
     userId: 5,
     id: 50,
-    title:
-      'repellendus qui recusandae incidunt voluptates tenetur qui omnis exercitationem',
+    title: 'repellendus qui recusandae incidunt voluptates tenetur qui omnis exercitationem',
     body: 'error suscipit maxime adipisci consequuntur recusandae\nvoluptas eligendi et est et voluptates\nquia distinctio ab amet quaerat molestiae et vitae\nadipisci impedit sequi nesciunt quis consectetur',
   },
   {
@@ -315,8 +311,7 @@ export const dbposts = [
   {
     userId: 6,
     id: 60,
-    title:
-      'consequatur placeat omnis quisquam quia reprehenderit fugit veritatis facere',
+    title: 'consequatur placeat omnis quisquam quia reprehenderit fugit veritatis facere',
     body: 'asperiores sunt ab assumenda cumque modi velit\nqui esse omnis\nvoluptate et fuga perferendis voluptas\nillo ratione amet aut et omnis',
   },
   {
@@ -334,8 +329,7 @@ export const dbposts = [
   {
     userId: 7,
     id: 63,
-    title:
-      'voluptas blanditiis repellendus animi ducimus error sapiente et suscipit',
+    title: 'voluptas blanditiis repellendus animi ducimus error sapiente et suscipit',
     body: 'enim adipisci aspernatur nemo\nnumquam omnis facere dolorem dolor ex quis temporibus incidunt\nab delectus culpa quo reprehenderit blanditiis asperiores\naccusantium ut quam in voluptatibus voluptas ipsam dicta',
   },
   {
@@ -461,8 +455,7 @@ export const dbposts = [
   {
     userId: 9,
     id: 84,
-    title:
-      'optio ipsam molestias necessitatibus occaecati facilis veritatis dolores aut',
+    title: 'optio ipsam molestias necessitatibus occaecati facilis veritatis dolores aut',
     body: 'sint molestiae magni a et quos\neaque et quasi\nut rerum debitis similique veniam\nrecusandae dignissimos dolor incidunt consequatur odio',
   },
   {
