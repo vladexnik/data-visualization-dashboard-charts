@@ -24,7 +24,6 @@ async function loadData() {
   for (const user of users) {
     postsPerUserName[user.name] = postsPerUserId[user.id];
   }
-  // console.log(postsPerUserName);
 
   createBarChart(postsPerUserName);
 }

@@ -47,10 +47,7 @@ function createPieChart(posts, users, userInput, postInput) {
   }));
 
   let usersFiltered = users.filter((user) => user.name.toLowerCase().includes(userInput.toLowerCase()));
-  console.log(usersFiltered);
-
   let filteredPosts = posts.filter((post) => post.body.toLowerCase().includes(postInput.toLowerCase()));
-  console.log(filteredPosts);
 
   for (let i = 0; i < usersFiltered.length; i++) {
     filteredPosts.forEach((post) => {
@@ -64,8 +61,6 @@ function createPieChart(posts, users, userInput, postInput) {
   for (let i = 0; i < usersFiltered.length; i++) {
     countPosts += usersFiltered[i].numberOfPosts;
   }
-  console.log('count', countPosts);
-
   let arrFiltered = usersFiltered.filter((user) => filteredPosts.some((post) => user.id === post.userId));
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -86,8 +81,6 @@ function createPieChart(posts, users, userInput, postInput) {
   let heightIterator = 0;
 
   usersFiltered.forEach((user) => {
-    console.log(user.numberOfPosts);
-
     // pie
     let colorPie = randomColor();
     ctx.fillStyle = colorPie;

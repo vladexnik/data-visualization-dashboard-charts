@@ -32,15 +32,15 @@
             <h1>Comments per Month</h1>
             <form class="chart__form" id="bar-chart-form">
                 <div class="chart__field">
-                    <label class="chart__label">Input user name: </label>
-                    <input class="chart__input" id="bar-chart-name" type="text">
+                    <label class="chart__label">Input user email: </label>
+                    <input type="text" class="chart__input" id="line-chart-email">
                 </div>
                 <div class="chart__field">
-                    <label class="chart__label">Input post content: </label>
-                    <input class="chart__input" id="bar-chart-content" type="text">
+                    <label class="chart__label">Input comment content: </label>
+                    <input type="text" class="chart__input" id="line-chart-content">
                 </div>
-                <button type="submit" class="chart__button">Update chart</button>
-                <button type="reset" class="chart__button">Reset chart</button>
+                <button type="submit" class="chart__button" id="upd-line-chart-btn">Update chart</button>
+                <button type="reset" class="chart__button" id="res-line-chart-btn">Reset chart</button>
             </form>
             <canvas id="canvasLineChart">
 
@@ -61,7 +61,7 @@
                 <button type="submit" class="chart__button" id="upd-pie-chart-btn">Update chart</button>
                 <button type="reset" class="chart__button" id="res-pie-chart-btn">Reset chart</button>
             </form>
-            <canvas id="canvasPieChart" class="canvas">
+            <canvas id="canvasPieChart">
 
             </canvas>
         </section>

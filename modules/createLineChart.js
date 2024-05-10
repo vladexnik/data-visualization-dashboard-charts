@@ -2,29 +2,63 @@ import { fetchNewData } from '../constants/service.js';
 import { PAD, DPI_HEIGHT, DPI_WIDTH, ROWS_COUNT } from '../constants/constants.js';
 import { BASE_URL } from '../constants/constants.js';
 
+const emailInputLine = document.getElementById('line-chart-email');
+const commentInputLine = document.getElementById('line-chart-content');
+const updateBtn = document.getElementById('upd-line-chart-btn');
+const resetBtn = document.getElementById('res-line-chart-btn');
+let emailInput = '';
+let commentInput = '';
+
 export async function loadComments() {
   let comments = await fetchNewData(`${BASE_URL}/comments`);
-  createLineChart(comments);
+  createLineChart(comments, emailInput, commentInput);
+
+  updateBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    canvasLineChart.classList.remove('canvas__update');
+    createLineChart(comments, emailInputLine.value, commentInputLine.value);
+    canvasLineChart.classList.add('canvas__update');
+  });
+
+  resetBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    canvasLineChart.classList.remove('canvas__update');
+    emailInputLine.value = '';
+    commentInputLine.value = '';
+    createLineChart(comments, emailInputLine.value, emailInputLine.value);
+    canvasLineChart.classList.add('canvas__update');
+  });
 }
 
-function createLineChart(comments) {
+function createLineChart(comments, emailInput, commentInput) {
   const canvas = document.getElementById('canvasLineChart');
   const ctx = canvas.getContext('2d');
   canvas.width = DPI_WIDTH;
   canvas.height = DPI_HEIGHT;
-
+  // comments = JSON.parse(localStorage.getItem('comments'));
   let commentsWithDate = [];
 
-  comments.forEach((commentObj) => {
-    commentsWithDate.push({
-      id: commentObj.id,
-      name: commentObj.name,
-      email: commentObj.email,
-      body: commentObj.body,
-      date: new Date(2023, Math.floor(Math.random() * 12) + 1).toISOString().slice(0, 7),
-    });
+  comments = comments.map((commentObj) => {
+    if (!commentObj.date) {
+      return {
+        ...commentObj,
+        date: new Date(2023, Math.floor(Math.random() * 12) + 1).toISOString().slice(0, 7),
+      };
+    } else return commentObj;
   });
-  comments = commentsWithDate;
+  console.log('date', comments);
+  // comments = commentsWithDate;
+  // if (!localStorage.getItem('comments')) {
+  //   localStorage.setItem('comments', JSON.stringify(commentsWithDate));
+  // }
+
+  if (commentInput || emailInput) {
+    comments = comments.filter(
+      (comment) =>
+        comment.body.toLowerCase().includes(commentInput.toLowerCase()) &&
+        comment.email.toLowerCase().includes(emailInput.toLowerCase()),
+    );
+  }
 
   const commentPerMonth = {
     1: 0,
@@ -89,7 +123,6 @@ function createLineChart(comments) {
   let maxNumCommPerMonth = Math.max(...Object.values(commentPerMonth)) + 10;
   const koef = (DPI_HEIGHT - PAD) / maxNumCommPerMonth; // px in one comment
   const step = Math.round((DPI_HEIGHT - PAD) / ROWS_COUNT);
-  const textStep = maxNumCommPerMonth / ROWS_COUNT;
   // console.log('step - textstep - koef', step, textStep, koef);
 
   ctx.beginPath(); // линии
@@ -99,7 +132,7 @@ function createLineChart(comments) {
   for (let i = 1; i <= ROWS_COUNT; i++) {
     const y = step * i;
     let numY = (DPI_HEIGHT - PAD - y).toFixed(0);
-    ctx.fillText((numY / koef).toFixed(0), 40, y + 5);
+    ctx.fillText((numY / koef).toFixed(1), 40, y + 5);
     ctx.moveTo(PAD, y);
     ctx.lineTo(DPI_WIDTH - PAD, y);
   }
@@ -115,4 +148,13 @@ function createLineChart(comments) {
   }
   ctx.stroke();
   ctx.closePath();
+
+  if (comments.length === 0) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = '36px Arial';
+    ctx.fillStyle = 'black';
+    ctx.textBaseline = 'top';
+    ctx.textAlign = 'center';
+    ctx.fillText(`No data. Try another filter, please`, canvas.width / 2, canvas.height / 2);
+  }
 }
