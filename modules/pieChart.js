@@ -10,27 +10,23 @@ const resetBtn = document.getElementById('res-pie-chart-btn');
 let userInput = '';
 let postInput = '';
 
-export async function loadPieData() {
-  let posts = await fetchNewData(`${BASE_URL}/posts`);
-  let users = await fetchNewData(`${BASE_URL}/users`);
+export async function buildPieChart(users, posts) {
+  // let posts = await fetchNewData(`${BASE_URL}/posts`);
+  // let users = await fetchNewData(`${BASE_URL}/users`);
 
   createPieChart(posts, users, userInput, postInput);
 
   updateBtn.addEventListener('click', (e) => {
     e.preventDefault();
     canvasPieChart.classList.remove('canvas__update');
-    userInput = userInputPie.value;
-    postInput = postInputPie.value;
-    createPieChart(posts, users, userInput, postInput);
+    createPieChart(posts, users, userInputPie.value, postInputPie.value);
     canvasPieChart.classList.add('canvas__update');
   });
 
   resetBtn.addEventListener('click', (e) => {
     e.preventDefault();
     canvasPieChart.classList.remove('canvas__update');
-    userInputPie.value = '';
-    postInputPie.value = '';
-    createPieChart(posts, users, userInputPie.value, postInputPie.value);
+    createPieChart(posts, users, userInput, postInput);
     canvasPieChart.classList.add('canvas__update');
   });
 }

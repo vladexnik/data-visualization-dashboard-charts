@@ -9,8 +9,16 @@ const resetBtn = document.getElementById('res-line-chart-btn');
 let emailInput = '';
 let commentInput = '';
 
-export async function loadComments() {
-  let comments = await fetchNewData(`${BASE_URL}/comments`);
+export async function buildLineChart(comments) {
+  // let comments = await fetchNewData(`${BASE_URL}/comments`);
+  comments = comments.map((commentObj) => {
+    if (!commentObj.date) {
+      return {
+        ...commentObj,
+        date: new Date(2023, Math.floor(Math.random() * 12) + 1).toISOString().slice(0, 7),
+      };
+    } else return commentObj;
+  });
   createLineChart(comments, emailInput, commentInput);
 
   updateBtn.addEventListener('click', (e) => {
@@ -35,22 +43,6 @@ function createLineChart(comments, emailInput, commentInput) {
   const ctx = canvas.getContext('2d');
   canvas.width = DPI_WIDTH;
   canvas.height = DPI_HEIGHT;
-  // comments = JSON.parse(localStorage.getItem('comments'));
-  let commentsWithDate = [];
-
-  comments = comments.map((commentObj) => {
-    if (!commentObj.date) {
-      return {
-        ...commentObj,
-        date: new Date(2023, Math.floor(Math.random() * 12) + 1).toISOString().slice(0, 7),
-      };
-    } else return commentObj;
-  });
-  console.log('date', comments);
-  // comments = commentsWithDate;
-  // if (!localStorage.getItem('comments')) {
-  //   localStorage.setItem('comments', JSON.stringify(commentsWithDate));
-  // }
 
   if (commentInput || emailInput) {
     comments = comments.filter(
@@ -82,7 +74,6 @@ function createLineChart(comments, emailInput, commentInput) {
       commentPerMonth[commentObj.date.slice(6, 7)] += 1;
     }
   });
-  // console.log(commentPerMonth);
 
   // X-axis
   ctx.beginPath();
@@ -98,10 +89,10 @@ function createLineChart(comments, emailInput, commentInput) {
   ctx.stroke();
   ctx.closePath();
 
-  ctx.font = '16px Arial';
-  ctx.fillStyle = '#0c457d';
-  ctx.fillText('Comments', 0, 15);
-  ctx.fillText('Month', DPI_WIDTH - 60, DPI_HEIGHT - 50);
+  ctx.font = '14px Arial';
+  ctx.fillStyle = 'rgb(59, 47, 102)';
+  ctx.fillText('Comments', 10, 12);
+  ctx.fillText('Month', DPI_WIDTH - 70, DPI_HEIGHT - 60);
 
   const monthsLineChart = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const monthLength = (DPI_WIDTH - PAD - PAD) / 12;
@@ -120,12 +111,11 @@ function createLineChart(comments, emailInput, commentInput) {
     ctx.closePath();
   }
 
-  let maxNumCommPerMonth = Math.max(...Object.values(commentPerMonth)) + 10;
+  let maxNumCommPerMonth = Math.max(...Object.values(commentPerMonth)) + 5;
   const koef = (DPI_HEIGHT - PAD) / maxNumCommPerMonth; // px in one comment
   const step = Math.round((DPI_HEIGHT - PAD) / ROWS_COUNT);
-  // console.log('step - textstep - koef', step, textStep, koef);
 
-  ctx.beginPath(); // линии
+  ctx.beginPath();
   ctx.strokeStyle = '#bbb';
   ctx.font = '14px Arial';
   ctx.fillStyle = 'black';

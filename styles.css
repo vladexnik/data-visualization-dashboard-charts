@@ -9,8 +9,8 @@
 body{
     background-color: rgb(140, 240, 255);
 }
+
 h1{
-    font-size: 36px;
     margin: 20px 0;
 }
 
@@ -18,10 +18,9 @@ h1{
     text-align: center;
 }
 
-
-#canvas, #canvasLineChart{
-    overflow-x: scroll;
-    overflow-y: scroll;
+#canvasBarChart, #canvasLineChart{
+    width: 1000px;
+    height: 400px;
     border-left: 2px solid black;
     border-bottom: 2px solid black;
     margin: 20px 0;
@@ -35,6 +34,8 @@ h1{
     
 }
 #canvasPieChart{
+    width: 1000px;
+        height: 400px;
     color: black;
     border: 2px solid black;
     border-radius: 20px;
@@ -66,7 +67,6 @@ h1{
     display: flex;
     gap: 10px;
     align-items: center;
-    /* flex-direction: column; */
 }
 
 .chart__label {
@@ -80,8 +80,7 @@ h1{
     width: 170px;
 }
 .chart__input:active,
-:hover,
-:focus {
+:hover {    
     outline: 1px  black;
     outline-offset: black;
 }
@@ -98,5 +97,6 @@ h1{
     transition: 0.2s ease;
 }
 .chart__button:hover{
-    background-color: rgba(255, 235, 53, 0.8);
+    scale: 1.02;
+    background-color: rgba(214, 201, 80, 0.8);
 }

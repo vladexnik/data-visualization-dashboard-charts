@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Graphics for data</title>
+    <script defer type="module" src="./script.js"></script>
+
     <link rel="stylesheet" href="./styles.css" />
 </head>
 
@@ -15,22 +17,22 @@
             <form class="chart__form" id="bar-chart-form">
                 <div class="chart__field">
                     <label class="chart__label">Input user name: </label>
-                    <input class="chart__input" id="bar-chart-name" type="text">
+                    <input type="text" class="chart__input" id="bar-chart-name">
                 </div>
                 <div class="chart__field">
                     <label class="chart__label">Input post content: </label>
-                    <input class="chart__input" id="bar-chart-content" type="text">
+                    <input type="text" class="chart__input" id="bar-chart-content">
                 </div>
-                <button type="submit" class="chart__button">Update chart</button>
-                <button type="reset" class="chart__button">Reset chart</button>
+                <button type="submit" class="chart__button" id="upd-bar-chart-btn">Update chart</button>
+                <button type="submit" class="chart__button" id="res-bar-chart-btn">Reset chart</button>
             </form>
-            <canvas id="canvas">
+            <canvas id="canvasBarChart">
             </canvas>
         </section>
 
         <section>
             <h1>Comments per Month</h1>
-            <form class="chart__form" id="bar-chart-form">
+            <form class="chart__form" id="line-chart-form">
                 <div class="chart__field">
                     <label class="chart__label">Input user email: </label>
                     <input type="text" class="chart__input" id="line-chart-email">
@@ -66,7 +68,6 @@
             </canvas>
         </section>
     </div>
-    <script type="module" src="./script.js"></script>
 
 </body>
 
