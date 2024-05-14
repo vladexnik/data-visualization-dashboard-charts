@@ -7,10 +7,9 @@ export async function buildBarChart(users, posts) {
   const resetBtn = document.getElementById('res-bar-chart-btn');
   let userInput = '';
   let postInput = '';
-
   if (users && posts) {
-    loader.remove();
     canvasBarChart.classList.add('loaded');
+    loader.classList.add('disabled');
     createBarChart(users, posts, userInput, postInput);
   }
 

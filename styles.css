@@ -71,10 +71,11 @@ h1{
     display: inline-block;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
-    margin: 0 auto;
+    margin: 100px auto;
     display: flex;
-    margin-top: 200px;
+    
 }
+
 #loader.disabled, #loaderLine.disabled, #loaderPie.disabled{
     display: none;
 }
