@@ -10,8 +10,8 @@ export async function buildPieChart(users, posts) {
   let postInput = '';
 
   if (users && posts) {
+    loaderPie.remove();
     canvasPieChart.classList.add('loaded');
-    loaderPie.classList.add('disabled');
     createPieChart(posts, users, userInput, postInput);
   }
 

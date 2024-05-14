@@ -18,8 +18,8 @@ export async function buildLineChart(comments) {
   });
 
   if (comments) {
+    loaderLine.remove();
     canvasLineChart.classList.add('loaded');
-    loaderLine.classList.add('disabled');
     createLineChart(comments, emailInput, commentInput);
   }
 

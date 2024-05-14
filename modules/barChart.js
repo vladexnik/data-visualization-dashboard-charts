@@ -9,8 +9,8 @@ export async function buildBarChart(users, posts) {
   let postInput = '';
 
   if (users && posts) {
+    loader.remove();
     canvasBarChart.classList.add('loaded');
-    loader.classList.add('disabled');
     createBarChart(users, posts, userInput, postInput);
   }
 
