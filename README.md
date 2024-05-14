@@ -61,6 +61,8 @@ Fetching data from API, creating and building 3 different types of charts, filte
 
 ## 7. Deploy
 
+https://charts-dashboard22.netlify.app/
+
 ## 8. Creators
 
 - [Nikityuk Vlad]: https://t.me/Slev22 — Front-End Developer
