@@ -1,22 +1,22 @@
-import { fetchNewData } from '../constants/service.js';
 import { DPI_HEIGHT, DPI_WIDTH, ROWS_COUNT } from '../constants/constants.js';
-import { BASE_URL } from '../constants/constants.js';
-
-const userInputBar = document.getElementById('bar-chart-name');
-const postInputBar = document.getElementById('bar-chart-content');
-const updateBtn = document.getElementById('upd-bar-chart-btn');
-const resetBtn = document.getElementById('res-bar-chart-btn');
-let userInput = '';
-let postInput = '';
 
 export async function buildBarChart(users, posts) {
-  //   const users = await fetchNewData(`${BASE_URL}/users`);
-  //   const posts = await fetchNewData(`${BASE_URL}/posts`);
+  const userInputBar = document.getElementById('bar-chart-name');
+  const postInputBar = document.getElementById('bar-chart-content');
+  const updateBtn = document.getElementById('upd-bar-chart-btn');
+  const resetBtn = document.getElementById('res-bar-chart-btn');
+  let userInput = '';
+  let postInput = '';
 
-  createBarChart(users, posts, userInput, postInput);
+  if (users && posts) {
+    canvasBarChart.classList.add('loaded');
+    loader.classList.add('disabled');
+    createBarChart(users, posts, userInput, postInput);
+  }
 
   updateBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    canvasBarChart.classList.remove('loaded');
     canvasBarChart.classList.remove('canvas__update');
     createBarChart(users, posts, userInputBar.value, postInputBar.value);
     canvasBarChart.classList.add('canvas__update');
@@ -25,7 +25,9 @@ export async function buildBarChart(users, posts) {
   resetBtn.addEventListener('click', (e) => {
     e.preventDefault();
     canvasBarChart.classList.remove('canvas__update');
-    createBarChart(users, posts, userInput, postInput);
+    userInputBar.value = '';
+    postInputBar.value = '';
+    createBarChart(users, posts, userInputBar.value, postInputBar.value);
     canvasBarChart.classList.add('canvas__update');
   });
 }

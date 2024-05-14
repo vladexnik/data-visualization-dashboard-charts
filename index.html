@@ -5,8 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Graphics for data</title>
-    <script defer type="module" src="./script.js"></script>
-
     <link rel="stylesheet" href="./styles.css" />
 </head>
 
@@ -26,7 +24,8 @@
                 <button type="submit" class="chart__button" id="upd-bar-chart-btn">Update chart</button>
                 <button type="submit" class="chart__button" id="res-bar-chart-btn">Reset chart</button>
             </form>
-            <canvas id="canvasBarChart">
+            <span class="loader" id="loader"></span>
+            <canvas class="canvas" id="canvasBarChart">
             </canvas>
         </section>
 
@@ -44,7 +43,8 @@
                 <button type="submit" class="chart__button" id="upd-line-chart-btn">Update chart</button>
                 <button type="reset" class="chart__button" id="res-line-chart-btn">Reset chart</button>
             </form>
-            <canvas id="canvasLineChart">
+            <span class="loader" id="loaderLine"></span>
+            <canvas class="canvas" id="canvasLineChart">
 
             </canvas>
         </section>
@@ -63,12 +63,13 @@
                 <button type="submit" class="chart__button" id="upd-pie-chart-btn">Update chart</button>
                 <button type="reset" class="chart__button" id="res-pie-chart-btn">Reset chart</button>
             </form>
-            <canvas id="canvasPieChart">
+            <span class="loader" id="loaderPie"></span>
+            <canvas class="canvas" id="canvasPieChart">
 
             </canvas>
         </section>
     </div>
-
+    <script type="module" src="./script.js"></script>
 </body>
 
 </html>

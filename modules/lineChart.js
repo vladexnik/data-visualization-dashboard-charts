@@ -1,16 +1,13 @@
-import { fetchNewData } from '../constants/service.js';
 import { PAD, DPI_HEIGHT, DPI_WIDTH, ROWS_COUNT } from '../constants/constants.js';
-import { BASE_URL } from '../constants/constants.js';
-
-const emailInputLine = document.getElementById('line-chart-email');
-const commentInputLine = document.getElementById('line-chart-content');
-const updateBtn = document.getElementById('upd-line-chart-btn');
-const resetBtn = document.getElementById('res-line-chart-btn');
-let emailInput = '';
-let commentInput = '';
 
 export async function buildLineChart(comments) {
-  // let comments = await fetchNewData(`${BASE_URL}/comments`);
+  const emailInputLine = document.getElementById('line-chart-email');
+  const commentInputLine = document.getElementById('line-chart-content');
+  const updateBtn = document.getElementById('upd-line-chart-btn');
+  const resetBtn = document.getElementById('res-line-chart-btn');
+  let emailInput = '';
+  let commentInput = '';
+
   comments = comments.map((commentObj) => {
     if (!commentObj.date) {
       return {
@@ -19,10 +16,16 @@ export async function buildLineChart(comments) {
       };
     } else return commentObj;
   });
-  createLineChart(comments, emailInput, commentInput);
+
+  if (comments) {
+    canvasLineChart.classList.add('loaded');
+    loaderLine.classList.add('disabled');
+    createLineChart(comments, emailInput, commentInput);
+  }
 
   updateBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    canvasLineChart.classList.remove('loaded');
     canvasLineChart.classList.remove('canvas__update');
     createLineChart(comments, emailInputLine.value, commentInputLine.value);
     canvasLineChart.classList.add('canvas__update');

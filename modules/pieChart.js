@@ -1,23 +1,23 @@
-import { fetchNewData } from '../constants/service.js';
 import { DPI_HEIGHT, DPI_WIDTH } from '../constants/constants.js';
-import { BASE_URL } from '../constants/constants.js';
 import { randomColor } from '../constants/constants.js';
 
-const userInputPie = document.getElementById('pie-chart-name');
-const postInputPie = document.getElementById('pie-chart-content');
-const updateBtn = document.getElementById('upd-pie-chart-btn');
-const resetBtn = document.getElementById('res-pie-chart-btn');
-let userInput = '';
-let postInput = '';
-
 export async function buildPieChart(users, posts) {
-  // let posts = await fetchNewData(`${BASE_URL}/posts`);
-  // let users = await fetchNewData(`${BASE_URL}/users`);
+  const userInputPie = document.getElementById('pie-chart-name');
+  const postInputPie = document.getElementById('pie-chart-content');
+  const updateBtn = document.getElementById('upd-pie-chart-btn');
+  const resetBtn = document.getElementById('res-pie-chart-btn');
+  let userInput = '';
+  let postInput = '';
 
-  createPieChart(posts, users, userInput, postInput);
+  if (users && posts) {
+    canvasPieChart.classList.add('loaded');
+    loaderPie.classList.add('disabled');
+    createPieChart(posts, users, userInput, postInput);
+  }
 
   updateBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    canvasPieChart.classList.remove('loaded');
     canvasPieChart.classList.remove('canvas__update');
     createPieChart(posts, users, userInputPie.value, postInputPie.value);
     canvasPieChart.classList.add('canvas__update');
@@ -26,7 +26,9 @@ export async function buildPieChart(users, posts) {
   resetBtn.addEventListener('click', (e) => {
     e.preventDefault();
     canvasPieChart.classList.remove('canvas__update');
-    createPieChart(posts, users, userInput, postInput);
+    userInputPie.value = '';
+    postInputPie.value = '';
+    createPieChart(posts, users, userInputPie.value, postInputPie.value);
     canvasPieChart.classList.add('canvas__update');
   });
 }
